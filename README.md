@@ -3,13 +3,16 @@
 > Repository to host GStreamer based Edge AI applications for TI devices
 
 This repo adds support for human pose estimation on top of edgeai-gst-apps
+
 ## Table of content
 - [Supported Devices](#supported-devices)
+- [SDK Version](#sdk-version)
 - [Steps to run](#steps-to-run)
 - [Result](#result)
 - [About Human Pose Estimation](#about-human-pose-estimation)
 - [Model Directory](#model-directory)
 - [How to add your own custom post-processing?](#how-to-add-your-own-custom-post-processing)
+
 ## Supported Devices
 
 | **DEVICE**              | **Supported**      |
@@ -19,45 +22,50 @@ This repo adds support for human pose estimation on top of edgeai-gst-apps
 | SK-TDA4VM               | :heavy_check_mark: |
 | AM69A                   | :heavy_check_mark: |
 
+## SDK Version
+
+This demo is supported on **EdgeAI SDK Version 9.0**
+
 ## Steps to run:
 
 1. Clone this repo in your target under /opt
 
     ```console
-    root@tda4vm-sk:/opt# git clone https://github.com/TexasInstruments/edgeai-gst-apps-human-pose.git
-    root@tda4vm-sk:/opt# cd edgeai-gst-apps-human-pose
+    root@soc:/opt# git clone https://github.com/TexasInstruments/edgeai-gst-apps-human-pose.git
+    root@soc:/opt# cd edgeai-gst-apps-human-pose
     ```
 
-2. Download model for human pose estimation
+2. Download and untar model for human pose estimation
 
     ```console
-    root@tda4vm-sk:/opt/edgeai-gst-apps-human-pose# ./download_models.sh -d human_pose_estimation
+    root@soc:/opt/edgeai-gst-apps-human-pose# wget --proxy off https://software-dl.ti.com/jacinto7/esd/edgeai-marketplace/human-pose-estimation/09_00_00/ONR-KD-7060-human-pose-yolox-s-640x640.tar.gz
+    root@soc:/opt/edgeai-gst-apps-human-pose# tar -xf ONR-KD-7060-human-pose-yolox-s-640x640.tar.gz -C /opt/model_zoo/
     ```
 
 3. Download sample input video
 
     ```console
-    root@tda4vm-sk:/opt/edgeai-gst-apps-human-pose# wget --proxy off http://software-dl.ti.com/jacinto7/esd/edgeai-test-data/demo_videos/human_pose_estimation_sample.h264 -O /opt/edgeai-test-data/videos/human_pose_estimation_sample.h264
+    root@soc:/opt/edgeai-gst-apps-human-pose#  wget --proxy off https://software-dl.ti.com/jacinto7/esd/edgeai-marketplace/human-pose-estimation/09_00_00/human_pose_estimation_sample.h264 -O /opt/edgeai-test-data/videos/human_pose_estimation_sample.h264
     ```
 
 4. Run the python app
 
     ```console
-    root@tda4vm-sk:/opt/edgeai-gst-apps-human-pose# cd apps_python
-    root@tda4vm-sk:/opt/edgeai-gst-apps-human-pose/apps_python# ./app_edgeai.py ../configs/human_pose_estimation.yaml
+    root@soc:/opt/edgeai-gst-apps-human-pose# cd apps_python
+    root@soc:/opt/edgeai-gst-apps-human-pose/apps_python# ./app_edgeai.py ../configs/human_pose_estimation.yaml
     ```
 
 5. Compile cpp apps
 
     ```console
-    root@tda4vm-sk:/opt/edgeai-gst-apps-human-pose# ./scripts/compile_cpp_apps.sh
+    root@soc:/opt/edgeai-gst-apps-human-pose# ./scripts/compile_cpp_apps.sh
     ```
 
-5. Run CPP app
+6. Run CPP app
 
     ```console
-    root@tda4vm-sk:/opt/edgeai-gst-apps-human-pose# cd apps_cpp
-    root@tda4vm-sk:/opt/edgeai-gst-apps-human-pose/apps_cpp# ./bin/Release/app_edgeai ../configs/human_pose_estimation.yaml
+    root@soc:/opt/edgeai-gst-apps-human-pose# cd apps_cpp
+    root@soc:/opt/edgeai-gst-apps-human-pose/apps_cpp# ./bin/Release/app_edgeai ../configs/human_pose_estimation.yaml
     ```
 ## Result
 <br/>
