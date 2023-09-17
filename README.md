@@ -5,6 +5,7 @@
 This repo adds support for human pose estimation on top of edgeai-gst-apps
 ## Table of content
 - [Supported Devices](#supported-devices)
+- [SDK Version](#sdk-version)
 - [Steps to run](#steps-to-run)
 - [Result](#result)
 - [About Human Pose Estimation](#about-human-pose-estimation)
@@ -18,6 +19,11 @@ This repo adds support for human pose estimation on top of edgeai-gst-apps
 | AM68A                   | :heavy_check_mark: |
 | SK-TDA4VM               | :heavy_check_mark: |
 | AM69A                   | :heavy_check_mark: |
+
+## SDK Version
+
+
+This demo is supported on **EdgeAI SDK Version 8.6**
 
 ## Steps to run:
 
